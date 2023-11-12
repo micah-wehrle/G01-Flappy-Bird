@@ -1,0 +1,384 @@
+[gd_scene load_steps=36 format=3 uid="uid://hjosxsagmnvc"]
+
+[ext_resource type="Script" path="res://scripts/Floating Score.gd" id="1_03yne"]
+[ext_resource type="Texture2D" uid="uid://vscjexyo38wh" path="res://img/background2.jpeg" id="1_8fl0q"]
+[ext_resource type="Texture2D" uid="uid://ynfceq6wojyn" path="res://img/floor sprite.jpeg" id="1_vywl0"]
+[ext_resource type="Script" path="res://scenes/Player.gd" id="2_1lemu"]
+[ext_resource type="Script" path="res://scripts/Film Track.gd" id="2_26li7"]
+[ext_resource type="Texture2D" uid="uid://cshklrnx7nl4o" path="res://img/bird sprite sheet.png" id="3_w627n"]
+[ext_resource type="Script" path="res://scripts/Floor Sprite Builder.gd" id="5_2uksw"]
+[ext_resource type="Script" path="res://scripts/Wall Builder.gd" id="5_iaalv"]
+[ext_resource type="AudioStream" uid="uid://cktqhts0tkhqh" path="res://audio/flap.wav" id="7_sj6ku"]
+[ext_resource type="Texture2D" uid="uid://bpa20sihgm6np" path="res://img/bricks.jpg" id="7_w83r0"]
+[ext_resource type="AudioStream" uid="uid://elxuax0j5b35" path="res://audio/G01 Flappy Bird.mp3" id="8_ruurd"]
+[ext_resource type="Script" path="res://scripts/Menu.gd" id="8_tuow1"]
+[ext_resource type="AudioStream" uid="uid://3adehebj7qsx" path="res://audio/explosion.wav" id="9_4yayj"]
+[ext_resource type="Script" path="res://scripts/Wall Section.gd" id="9_r75ts"]
+[ext_resource type="AudioStream" uid="uid://c676y3w0gdvkj" path="res://audio/pickupCoin.wav" id="10_n7opl"]
+[ext_resource type="Texture2D" uid="uid://026p83y48u7m" path="res://img/dead tree.png" id="12_wb538"]
+
+[sub_resource type="SystemFont" id="SystemFont_61hwc"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_pnmuy"]
+font = SubResource("SystemFont_61hwc")
+font_size = 128
+font_color = Color(0.164706, 0.14902, 1, 1)
+outline_size = 20
+
+[sub_resource type="LabelSettings" id="LabelSettings_rs6yp"]
+font_size = 106
+font_color = Color(0.14902, 0.164706, 1, 1)
+outline_size = 10
+
+[sub_resource type="LabelSettings" id="LabelSettings_rkxb3"]
+font_size = 46
+font_color = Color(1, 0.160784, 0.160784, 1)
+outline_size = 7
+
+[sub_resource type="LabelSettings" id="LabelSettings_urps7"]
+font_size = 66
+font_color = Color(0.466667, 0.00392157, 0.854902, 1)
+outline_size = 10
+
+[sub_resource type="LabelSettings" id="LabelSettings_5kcni"]
+font_size = 86
+font_color = Color(0, 0.407843, 0.537255, 1)
+outline_size = 10
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_r3x2q"]
+radius = 1.19899
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yjn5q"]
+atlas = ExtResource("3_w627n")
+region = Rect2(0, 0, 640, 640)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bfsg1"]
+atlas = ExtResource("3_w627n")
+region = Rect2(640, 0, 640, 640)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lodqc"]
+atlas = ExtResource("3_w627n")
+region = Rect2(1280, 0, 640, 640)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u5wrx"]
+atlas = ExtResource("3_w627n")
+region = Rect2(0, 640, 640, 640)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v6qw3"]
+atlas = ExtResource("3_w627n")
+region = Rect2(640, 640, 640, 640)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t4lqc"]
+atlas = ExtResource("3_w627n")
+region = Rect2(1280, 640, 640, 640)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7gqy3"]
+atlas = ExtResource("3_w627n")
+region = Rect2(0, 1280, 640, 640)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jykqb"]
+atlas = ExtResource("3_w627n")
+region = Rect2(640, 1280, 640, 640)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ctei2"]
+atlas = ExtResource("3_w627n")
+region = Rect2(1280, 1280, 640, 640)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_gay4j"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yjn5q")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bfsg1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lodqc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u5wrx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v6qw3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t4lqc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7gqy3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jykqb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ctei2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yjn5q")
+}],
+"loop": false,
+"name": &"default",
+"speed": 25.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mfsfn"]
+size = Vector2(1492, 97)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_e2u8c"]
+size = Vector2(78, 500)
+
+[node name="Scene" type="Node2D"]
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2(0.5, 0.5)
+motion_mirroring = Vector2(3809.73, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
+position = Vector2(1142, -186)
+scale = Vector2(6.08971, 6.08971)
+texture = ExtResource("1_8fl0q")
+
+[node name="WorldCanvas" type="CanvasLayer" parent="."]
+scale = Vector2(0.5, 0.5)
+transform = Transform2D(0.5, 0, 0, 0.5, 0, 0)
+follow_viewport_enabled = true
+
+[node name="Test Score" type="Label" parent="WorldCanvas"]
+process_mode = 3
+offset_left = -860.0
+offset_top = 478.0
+offset_right = -820.0
+offset_bottom = 504.0
+text = "+1"
+script = ExtResource("1_03yne")
+
+[node name="HUD" type="CanvasLayer" parent="."]
+scale = Vector2(0.5, 0.5)
+transform = Transform2D(0.5, 0, 0, 0.5, 0, 0)
+
+[node name="Label" type="Label" parent="HUD"]
+offset_left = 32.0
+offset_top = 2412.0
+offset_right = 513.0
+offset_bottom = 2590.0
+text = "Score: 0"
+label_settings = SubResource("LabelSettings_pnmuy")
+
+[node name="Menu" type="Window" parent="HUD"]
+process_mode = 3
+transparent_bg = true
+initial_position = 1
+size = Vector2i(1750, 900)
+transparent = true
+script = ExtResource("8_tuow1")
+
+[node name="Header" type="Label" parent="HUD/Menu"]
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 149.0
+grow_horizontal = 2
+text = "Flappy Bird!"
+label_settings = SubResource("LabelSettings_rs6yp")
+horizontal_alignment = 1
+
+[node name="Header2" type="Label" parent="HUD/Menu"]
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 148.55
+offset_bottom = 297.55
+grow_horizontal = 2
+text = "Made by Micah"
+label_settings = SubResource("LabelSettings_rkxb3")
+horizontal_alignment = 1
+
+[node name="High Score" type="Label" parent="HUD/Menu"]
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -206.45
+offset_bottom = -112.45
+grow_horizontal = 2
+grow_vertical = 0
+text = "High Score: 0"
+label_settings = SubResource("LabelSettings_urps7")
+horizontal_alignment = 1
+
+[node name="Instruction" type="Label" parent="HUD/Menu"]
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -121.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "Press the Spacebar to Fly!"
+label_settings = SubResource("LabelSettings_5kcni")
+horizontal_alignment = 1
+
+[node name="Film Track" type="Node2D" parent="."]
+position = Vector2(-255, 0)
+script = ExtResource("2_26li7")
+
+[node name="Player" type="CharacterBody2D" parent="Film Track"]
+position = Vector2(-134, -282)
+motion_mode = 1
+script = ExtResource("2_1lemu")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Film Track/Player"]
+position = Vector2(-0.125, -0.125)
+scale = Vector2(21.94, 21.94)
+shape = SubResource("CircleShape2D_r3x2q")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Film Track/Player/CollisionShape2D"]
+z_index = 1
+position = Vector2(-0.430151, -0.338993)
+scale = Vector2(0.0059021, 0.0059021)
+sprite_frames = SubResource("SpriteFrames_gay4j")
+frame = 9
+frame_progress = 1.0
+
+[node name="Camera2D" type="Camera2D" parent="Film Track/Player"]
+position = Vector2(368, 16)
+zoom = Vector2(2, 2)
+limit_bottom = 0
+
+[node name="Flap" type="AudioStreamPlayer2D" parent="Film Track/Player"]
+stream = ExtResource("7_sj6ku")
+
+[node name="Music" type="AudioStreamPlayer2D" parent="Film Track/Player"]
+process_mode = 3
+stream = ExtResource("8_ruurd")
+autoplay = true
+
+[node name="Death" type="AudioStreamPlayer2D" parent="Film Track/Player"]
+process_mode = 3
+stream = ExtResource("9_4yayj")
+
+[node name="Scored" type="AudioStreamPlayer2D" parent="Film Track/Player"]
+stream = ExtResource("10_n7opl")
+
+[node name="Floor" type="StaticBody2D" parent="Film Track"]
+position = Vector2(254, -1.5)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Film Track/Floor"]
+shape = SubResource("RectangleShape2D_mfsfn")
+
+[node name="Wall Builder" type="Node2D" parent="Film Track"]
+position = Vector2(988, -202)
+script = ExtResource("5_iaalv")
+
+[node name="Floor Builder" type="Node2D" parent="."]
+position = Vector2(-255, 0)
+script = ExtResource("5_2uksw")
+
+[node name="RootTile" type="Sprite2D" parent="."]
+z_index = 1
+position = Vector2(-790, 1176)
+scale = Vector2(0.0716273, 0.0716273)
+texture = ExtResource("1_vywl0")
+
+[node name="Wall Section" type="StaticBody2D" parent="."]
+position = Vector2(-830, -204)
+script = ExtResource("9_r75ts")
+
+[node name="Bottom Wall Collision" type="CollisionShape2D" parent="Wall Section"]
+position = Vector2(5, 333)
+shape = SubResource("RectangleShape2D_e2u8c")
+
+[node name="Top Wall Collision" type="CollisionShape2D" parent="Wall Section"]
+position = Vector2(5, -346)
+shape = SubResource("RectangleShape2D_e2u8c")
+
+[node name="Bottom Wall Texture" type="TextureRect" parent="Wall Section"]
+offset_left = -34.0
+offset_top = 83.0
+offset_right = 218.0
+offset_bottom = 1696.0
+scale = Vector2(0.31, 0.31)
+texture = ExtResource("7_w83r0")
+expand_mode = 1
+stretch_mode = 1
+
+[node name="Top Wall Texture" type="TextureRect" parent="Wall Section"]
+offset_left = -34.0
+offset_top = -596.0
+offset_right = 218.0
+offset_bottom = 1017.0
+scale = Vector2(0.31, 0.31)
+texture = ExtResource("7_w83r0")
+expand_mode = 1
+stretch_mode = 1
+
+[node name="Wall Section2" type="StaticBody2D" parent="."]
+position = Vector2(435, -204)
+script = ExtResource("9_r75ts")
+
+[node name="Bottom Wall Collision" type="CollisionShape2D" parent="Wall Section2"]
+position = Vector2(5, 333)
+shape = SubResource("RectangleShape2D_e2u8c")
+
+[node name="Top Wall Collision" type="CollisionShape2D" parent="Wall Section2"]
+position = Vector2(5, -346)
+shape = SubResource("RectangleShape2D_e2u8c")
+
+[node name="Bottom Wall Texture" type="TextureRect" parent="Wall Section2"]
+offset_left = -34.0
+offset_top = 83.0
+offset_right = 218.0
+offset_bottom = 1696.0
+scale = Vector2(0.31, 0.31)
+texture = ExtResource("7_w83r0")
+expand_mode = 1
+stretch_mode = 1
+
+[node name="Top Wall Texture" type="TextureRect" parent="Wall Section2"]
+offset_left = -34.0
+offset_top = -596.0
+offset_right = 218.0
+offset_bottom = 1017.0
+scale = Vector2(0.31, 0.31)
+texture = ExtResource("7_w83r0")
+expand_mode = 1
+stretch_mode = 1
+
+[node name="Wall Section3" type="StaticBody2D" parent="."]
+position = Vector2(135, -204)
+script = ExtResource("9_r75ts")
+
+[node name="Bottom Wall Collision" type="CollisionShape2D" parent="Wall Section3"]
+position = Vector2(5, 333)
+shape = SubResource("RectangleShape2D_e2u8c")
+
+[node name="Top Wall Collision" type="CollisionShape2D" parent="Wall Section3"]
+position = Vector2(5, -346)
+shape = SubResource("RectangleShape2D_e2u8c")
+
+[node name="Bottom Wall Texture" type="TextureRect" parent="Wall Section3"]
+offset_left = -34.0
+offset_top = 83.0
+offset_right = 218.0
+offset_bottom = 1696.0
+scale = Vector2(0.31, 0.31)
+texture = ExtResource("7_w83r0")
+expand_mode = 1
+stretch_mode = 1
+
+[node name="Top Wall Texture" type="TextureRect" parent="Wall Section3"]
+offset_left = -34.0
+offset_top = -596.0
+offset_right = 218.0
+offset_bottom = 1017.0
+scale = Vector2(0.31, 0.31)
+texture = ExtResource("7_w83r0")
+expand_mode = 1
+stretch_mode = 1
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-515, -253)
+scale = Vector2(0.881944, 1.36111)
+texture = ExtResource("12_wb538")
+flip_h = true
